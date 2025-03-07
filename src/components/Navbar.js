@@ -10,9 +10,15 @@ export default function Navbar() {
   const [showSidebar, setShowSidebar] = useState(false);
   const location = useLocation();
 
+  // Determine if we are in a recipe-related page (Search or MealInfo)
+  const isRecipesActive =
+    location.pathname.startsWith("/recipes") ||
+    location.pathname.startsWith("/search") ||
+    location.pathname.startsWith("/meal");
+
   const links = [
     { name: "Home", path: "/", icon: faHome },
-    { name: "Recipes", path: "/recipes", icon: faList },
+    { name: "Recipes", path: "/recipes", icon: faList, isActive: isRecipesActive },
     { name: "ReciBot", path: "/recibot", icon: faGhost },
     { name: "Settings", path: "/settings", icon: faCog },
   ];
@@ -31,7 +37,7 @@ export default function Navbar() {
         <div className="nav-links">
           {links.map((link) => (
             <Link
-              className={location.pathname === link.path ? "active" : ""}
+              className={link.isActive || location.pathname === link.path ? "active" : ""}
               to={link.path}
               key={link.name}
             >
@@ -56,5 +62,6 @@ export default function Navbar() {
     </>
   );
 }
+
 
 

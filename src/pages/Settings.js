@@ -6,8 +6,6 @@ export default function Settings() {
     const getSavedSettings = () => {
         const savedSettings = JSON.parse(localStorage.getItem("userSettings"));
         return savedSettings || {
-            "--background-color": "#fff",
-            "--background-light": "#fff",
             "--primary-color": "rgb(255,0,86)",
             "--shadow-color": "rgba(0,0,0,0.2)",
             "--text-color": "#0A0A0A",
@@ -18,7 +16,6 @@ export default function Settings() {
     };
 
     const [settings, setSettings] = useState(getSavedSettings);
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
     const [primaryColor, setPrimaryColor] = useState(Number(localStorage.getItem("primaryColor")) || 0);
     const [fontSize, setFontSize] = useState(Number(localStorage.getItem("fontSize")) || 1);
     const [animationSpeed, setAnimationSpeed] = useState(Number(localStorage.getItem("animationSpeed")) || 1);
@@ -28,36 +25,9 @@ export default function Settings() {
         for (let key in settings) {
             root.style.setProperty(key, settings[key]);
         }
-        // Apply font size to the entire document
         document.body.style.fontSize = settings["--font-size"];
         localStorage.setItem("userSettings", JSON.stringify(settings));
     }, [settings]);
-
-    const themes = [
-        {
-            "--background-color": "#fff",
-            "--background-light": "#fff",
-            "--shadow-color": "rgba(0,0,0,0.2)",
-            "--text-color": "#0A0A0A",
-            "--text-light": "#575757",
-        },
-        {
-            "--background-color": "rgb(29,29,29)",
-            "--background-light": "rgb(77,77,77)",
-            "--shadow-color": "rgba(0,0,0,0.2)",
-            "--text-color": "#ffffff",
-            "--text-light": "#eceaea",
-        }
-    ];
-
-    function changeTheme(i) {
-        const _theme = { ...themes[i] };
-        setTheme(i === 0 ? "light" : "dark");
-        localStorage.setItem("theme", i === 0 ? "light" : "dark");
-
-        let _settings = { ...settings, ..._theme };
-        setSettings(_settings);
-    }
 
     const primaryColors = [
         "rgb(255,0,86)",
@@ -105,26 +75,7 @@ export default function Settings() {
 
     return (
         <div>
-            <div className="section d-block">
-                <h2>Preferred Theme</h2>
-                <div className="options-container">
-                    <div className="option light" onClick={() => changeTheme(0)}>
-                        {theme === "light" && (
-                            <div className="check">
-                                <FontAwesomeIcon icon={faCheck} />
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="option dark" onClick={() => changeTheme(1)}>
-                        {theme === "dark" && (
-                            <div className="check">
-                                <FontAwesomeIcon icon={faCheck} />
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div>
+            {/* ❌ Removed "Preferred Theme" Section */}
 
             <div className="section d-block">
                 <h2>Preferred Color</h2>
@@ -180,4 +131,5 @@ export default function Settings() {
         </div>
     );
 }
+
 

@@ -38,9 +38,14 @@
             &:hover::before {
                 transform: scaleX(1);
             }
-            &.active {
+            &.active,
+            &.recipes-active {
+                // Custom class for Recipes tab
                 color: var(--primary-color);
                 font-weight: bold;
+                &::before {
+                    transform: scaleX(1);
+                }
             }
         }
     }
@@ -55,14 +60,16 @@
             border-radius: 5px;
             transition: 0.3s;
         }
-        &.active .bar:nth-child(1) {
-            transform: translateY(10px) rotate(45deg);
-        }
-        &.active .bar:nth-child(2) {
-            opacity: 0;
-        }
-        &.active .bar:nth-child(3) {
-            transform: translateY(-10px) rotate(-45deg);
+        &.active {
+            .bar:nth-child(1) {
+                transform: translateY(10px) rotate(45deg);
+            }
+            .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .bar:nth-child(3) {
+                transform: translateY(-10px) rotate(-45deg);
+            }
         }
     }
 }
@@ -70,38 +77,46 @@
 
 /* Sidebar */
 
+
+/* Sidebar */
+
 .sidebar {
     position: fixed;
     top: 0;
-    left: -260px;
+    left: -260px; // Hide sidebar initially
     width: 260px;
     height: 100vh;
     background-color: var(--background-color);
     box-shadow: 3px 0 5px var(--shadow-color);
-    transition: left 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;
     padding: 1em;
+    z-index: 1000;
     &.show {
-        left: 0;
+        transform: translateX(260px); // Slide in the sidebar
     }
     .close-btn {
         position: absolute;
-        top: 10px;
+        top: 15px;
         right: 15px;
         background: none;
         border: none;
         font-size: 24px;
-        color: white;
+        color: var(--primary-color);
         cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+            color: var(--hover-color);
+        }
     }
     .sidebar-link {
         display: flex;
         align-items: center;
-        padding: 10px;
+        padding: 12px;
         color: var(--text-color);
         font-size: 1.1em;
         text-decoration: none;
         border-left: 4px solid transparent;
-        transition: 0.3s;
+        transition: 0.3s ease-in-out;
         svg {
             margin-right: 10px;
         }
@@ -117,6 +132,17 @@
 }
 
 
+/* Page Wrapper to prevent overlap */
+
+.page-content {
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar-open .page-content {
+    margin-left: 260px; // Shift content when sidebar is open
+}
+
+
 /* Mobile View */
 
 @media (max-width: 768px) {
@@ -126,5 +152,25 @@
     .sidebar-btn {
         display: flex;
         flex-direction: column;
+        cursor: pointer;
+        .bar {
+            height: 4px;
+            width: 30px;
+            background-color: var(--text-color);
+            margin: 5px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        &.active {
+            .bar:nth-child(1) {
+                transform: translateY(10px) rotate(45deg);
+            }
+            .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .bar:nth-child(3) {
+                transform: translateY(-10px) rotate(-45deg);
+            }
+        }
     }
 }
