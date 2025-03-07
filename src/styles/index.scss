@@ -22,6 +22,8 @@
 body {
     font-size: var (--font-size);
     font-family: Roboto, sans-serif;
+    padding-top: 55px;
+    background-color: var(--background-light);
 }
 
 a {
@@ -67,8 +69,8 @@ img {
     display: flex;
     align-items: center;
     margin-bottom: 3vw;
-    &.d-block{
-        display:block;
+    &.d-block {
+        display: block;
     }
     .title {
         color: var(--text-color);
@@ -95,55 +97,55 @@ img {
 @import "partials/recipes-section";
 @import "partials/footer";
 @import "partials/previous-searches";
-
-.options-container{
+.options-container {
     box-shadow: 0 5px 10px var(--shadow-color);
-    padding:1em;
+    padding: 1em;
     border-radius: 5px;
     border-left: .5em solid var(--primary-color);
-    background-color: var(--background-color);
-    margin-top:1em;
-    display:flex;
-    gap:1em;
-    .option{
-        height:3.5em;
+    background-color: var(--background-light);
+    margin-top: 1em;
+    display: flex;
+    gap: 1em;
+    .option {
+        height: 3.5em;
         width: 3.5em;
         box-shadow: 0 3px 6px var(--shadow-color);
         border-radius: 5px;
-        display:flex;
+        display: flex;
         justify-content: center;
         align-items: center;
-        &.light{
+        &.light {
             background-color: #fff;
         }
-        &.dark{
-            background-color: rgb(29,29,29);
+        &.dark {
+            background-color: rgb(29, 29, 29);
         }
-        .check{
+        .check {
             height: 2.5em;
             width: 2.5em;
             background-color: var(--primary-color);
             border-radius: 50%;
-            display:flex;
+            display: flex;
             justify-content: center;
             align-items: center;
             box-shadow: 0 2px 5px var(--shadow-color);
-
-            svg{
+            svg {
                 height: 1.5em;
                 width: 1.5em;
-            } 
+            }
         }
-       
     }
-    .btn span{
+    .btn span {
         margin-left: .5em;
-        display:inline-block;
+        display: inline-block;
     }
 }
-.d-block h2{
-    font-size:1.75em;
+
+.d-block h2 {
+    font-size: 1.75em;
+    color: var(--text-color);
 }
+
 .main {
     padding-block: 3vw;
 }
